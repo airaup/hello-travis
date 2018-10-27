@@ -1,0 +1,7 @@
+env:
+  global:
+  - secure: "ZK9cFK/8yO8TOeneRJxPXwdSX3NneDYsfdsw1uTH11sn0uK0TWEYrYKO0YWz8lKQEx7rosqm8+XnZGQOuKvedDAs4LoPi4ftRHwVVM9825Pi9lJrFmCwl1F1qjMb/+ODAezi0cmVvsc+41m6d61cb8cuFTuTKnER/KwaDpU2Nde0R/O7NckpVZkX65luSsyuS02uD05Ao3UW/t6B4gl3X315dS9illF7J4cSOxC34LrZfpAOXIoBBOXmjwDkHMF5l5/hk5zczF4a2t5+GnN5rDuD4aqQtWTdF5Ocn4xnpdHePMNLOrqJuNMlSb0SufQ9OlEq5z8BbzEmHlmaKIA5TpN52jVARIrZVFLtSqwLhiNdQ08MXrR+AUaC9MBbrAkGlvLjsLm8RdJycnrk7pBwFCexHBK/061rMT4YBQ8Z46Vm3/3JoUjrpKGFHJfd3lPFqxdQzVaTf65Ar7OTjcrE4iaAGDcxel5KarFfZ4Zw1DFVgkb4F03s90Uqo9ZmEbQ1RBDdmFpvJKlZvZjD6iRiGecbTWYxc2J7rnJoYS9II+DS8B+kDxWVhqhGaxxM4Sz+4CbIKG0i3qI3AOfcVQ0IfRMM9vteX78+etg6I3GVG2Ld9meAgOgTNycr8h7Ysn3qwClbAJcTqC6/chwFM37foQWZdk6PIQjtvmVUvNxm0IM="
+after_success:
+- echo "Start copying to FTP server"
+- curl -T src/index.php ftp://$FTP_USER:$FTP_PASSWORD@$FTP_USER.ferozo.com/public_html/devops/
+- echo "Copy done, check it!"
