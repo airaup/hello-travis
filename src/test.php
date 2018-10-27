@@ -1,1 +1,2 @@
-echo "another file";
+<?php
+echo "Test file";
