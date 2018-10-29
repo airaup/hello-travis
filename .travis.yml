@@ -9,5 +9,5 @@ before_script:
   - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
   - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
 script:
-  - php phpcbf.phar --standard=PSR2 --extensions=php -n src
+  - php phpcbf.phar --standard=PSR2 --extensions=php -n src || true
   - php phpcs.phar --standard=PSR2 --extensions=php -n src
