@@ -21,6 +21,6 @@ script:
 
 deploy:
   provider: script
-  script: wput --basename=src/ src/* ftp://$FTP_USER:$FTP_PASSWORD@$FTP_USER.ferozo.com/public_html/devops/
+  script: wput -p --basename=src/ src/* ftp://$FTP_USER:$FTP_PASSWORD@$FTP_USER.ferozo.com/public_html/devops/
   on:
     branch: master
