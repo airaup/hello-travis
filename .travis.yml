@@ -5,9 +5,22 @@ php:
 
 sudo: required
 
+addons:
+  apt:
+    packages:
+    - wput
+
+env:
+  global:
+    secure: HLwQqD1Ug2A3mdMRy4+dEEeNzpyt1UqvOf1pqvYgmJpTQbG2GxyEHoap4afKMchaDJbSmiIqj4SfpSnE8ptLwyRriIDqkIR0flw/tXlzI0KpQqxQLvJOcawmThDCaKiNLJR30KukPvQvdh3yEDgll6/sbEIwun5mAkIErOZyQna/AjHBnPbB6DPe6WdUHHAyu6W/4Q8kBRF1X7XIMNPF/R3TYhTsg77AfDDAJmykPDzCNqBXCziO0qsb4uHmCdoNkN+OV9EsIJgyfW83xqEOlRGYTUg+sZDCrOGvNIziJmbu5X9XYUx+NIhezb0K4j5Fao0lDgMiO680hBtirA23e6N7IkjACJcdEATVjvjSdINH19gwOqCMwfVOFSDn16v3IrJ9ypq7PWZxygrmkollHhDTTgQPwdsl7Bl1YsRoP+SbXxG5e3+iDbadrrha+3BJpkix/aNORDjJ4C/cEGqiHdmZoHmC+e1qyRkzc6fvjDgsz/qkEXD2sK1i1u4k6hCY3zL5mEoibjBMspUR5U0Zc6sg2+bUoQ2kbc1LMz5BJhyuOw+DNgpQJ0bTT+bQMsL6s1d97hFAGUV+yEyAP9JMk6TsduWgkWljf8iYXAdjOa1tSJytegPwKuZpSFJvBUeMQWytOFz9FTcnu85XukWTmDJ0ytxO5j24hoQKiH287Sg=
+
 before_script:
   - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-  - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
 script:
-  - php phpcbf.phar --standard=PSR2 --extensions=php -n src || true
   - php phpcs.phar --standard=PSR2 --extensions=php -n src
+
+deploy:
+  provider: script
+  script: wput --basename=src/ src/* ftp://$FTP_USER:$FTP_PASSWORD@$FTP_USER.ferozo.com/public_html/devops/
+  on:
+    branch: master
